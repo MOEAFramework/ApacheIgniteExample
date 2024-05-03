@@ -31,7 +31,7 @@ public class IgniteMasterSlaveExample {
 		try (Ignite ignite = Ignition.start("config/ignite-config.xml")) {
 		    ExecutorService executor = ignite.executorService();
 					
-		    try (Problem problem = new DistributedProblem(new ExpensiveSchafferProblem(), executor)) {
+		    try (Problem problem = new DistributedProblem(new MyDistributedProblem(), executor)) {
 		        NSGAII algorithm = new NSGAII(problem);
 		        algorithm.run(10000);		
 		        algorithm.getResult().display();

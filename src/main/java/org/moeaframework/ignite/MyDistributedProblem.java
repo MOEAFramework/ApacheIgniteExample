@@ -17,13 +17,15 @@
  */
 package org.moeaframework.ignite;
 
+import java.io.Serializable;
+
 import org.moeaframework.core.Solution;
 import org.moeaframework.core.variable.EncodingUtils;
 import org.moeaframework.problem.AbstractProblem;
 
-public class ExpensiveSchafferProblem extends AbstractProblem {
+public class MyDistributedProblem extends AbstractProblem implements Serializable {
 
-	public ExpensiveSchafferProblem() {
+	public MyDistributedProblem() {
 		super(1, 2);
 	}
 
