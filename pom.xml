@@ -40,7 +40,6 @@
 			<groupId>org.moeaframework</groupId>
 			<artifactId>moeaframework</artifactId>
 			<version>4.0</version>
-			<scope>provided</scope>
 		</dependency>
 		<dependency>
 		    <groupId>org.apache.ignite</groupId>
