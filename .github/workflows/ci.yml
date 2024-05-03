@@ -21,7 +21,8 @@ jobs:
       - run: |
           mvn package
 
-          OPTIONS="--add-opens=java.base/jdk.internal.access=ALL-UNNAMED \
+          $OPTIONS=@'
+            --add-opens=java.base/jdk.internal.access=ALL-UNNAMED \
             --add-opens=java.base/jdk.internal.misc=ALL-UNNAMED \
             --add-opens=java.base/sun.nio.ch=ALL-UNNAMED \
             --add-opens=java.base/sun.util.calendar=ALL-UNNAMED \
@@ -44,7 +45,8 @@ jobs:
             --add-opens=java.base/java.time=ALL-UNNAMED \
             --add-opens=java.base/java.text=ALL-UNNAMED \
             --add-opens=java.management/sun.management=ALL-UNNAMED \
-            --add-opens java.desktop/java.awt.font=ALL-UNNAMED"
+            --add-opens java.desktop/java.awt.font=ALL-UNNAMED
+            '@
           
           java $OPTIONS -classpath target/apache-ignite-example-*-jar-with-dependencies.jar org.moeaframework.ignite.IgniteMasterSlaveExample
           java $OPTIONS -classpath target/apache-ignite-example-*-jar-with-dependencies.jar org.moeaframework.ignite.IgniteIslandModelExample
