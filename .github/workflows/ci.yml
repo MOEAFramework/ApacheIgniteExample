@@ -46,7 +46,7 @@ jobs:
             --add-opens=java.base/java.text=ALL-UNNAMED \
             --add-opens=java.management/sun.management=ALL-UNNAMED \
             --add-opens java.desktop/java.awt.font=ALL-UNNAMED
-            '@
+          '@
           
           java $OPTIONS -classpath target/apache-ignite-example-*-jar-with-dependencies.jar org.moeaframework.ignite.IgniteMasterSlaveExample
           java $OPTIONS -classpath target/apache-ignite-example-*-jar-with-dependencies.jar org.moeaframework.ignite.IgniteIslandModelExample
