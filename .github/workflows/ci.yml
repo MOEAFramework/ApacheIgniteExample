@@ -6,7 +6,7 @@ on:
 
 jobs:
   test:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     strategy:
       fail-fast: false
       matrix:
@@ -22,7 +22,7 @@ jobs:
         run: |
           mvn package
 
-          $OPTIONS="--add-opens=java.base/jdk.internal.access=ALL-UNNAMED \
+          OPTIONS="--add-opens=java.base/jdk.internal.access=ALL-UNNAMED \
             --add-opens=java.base/jdk.internal.misc=ALL-UNNAMED \
             --add-opens=java.base/sun.nio.ch=ALL-UNNAMED \
             --add-opens=java.base/sun.util.calendar=ALL-UNNAMED \
