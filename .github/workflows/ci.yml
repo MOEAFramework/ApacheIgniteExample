@@ -20,7 +20,7 @@ jobs:
           distribution: oracle
       - shell: bash
         run: |
-          MVN_OPTS="--add-opens=java.base/jdk.internal.access=ALL-UNNAMED \
+          export MAVEN_OPTS="--add-opens=java.base/jdk.internal.access=ALL-UNNAMED \
             --add-opens=java.base/jdk.internal.misc=ALL-UNNAMED \
             --add-opens=java.base/sun.nio.ch=ALL-UNNAMED \
             --add-opens=java.base/sun.util.calendar=ALL-UNNAMED \
