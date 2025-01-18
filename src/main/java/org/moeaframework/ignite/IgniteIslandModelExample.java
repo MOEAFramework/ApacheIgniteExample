@@ -1,4 +1,4 @@
-/* Copyright 2009-2024 David Hadka
+/* Copyright 2009-2025 David Hadka
  *
  * This file is part of the MOEA Framework.
  *
@@ -22,8 +22,8 @@ import java.io.IOException;
 import org.apache.ignite.Ignite;
 import org.apache.ignite.Ignition;
 import org.moeaframework.algorithm.NSGAII;
-import org.moeaframework.core.Problem;
-import org.moeaframework.core.Selection;
+import org.moeaframework.algorithm.extension.Frequency;
+import org.moeaframework.core.selection.Selection;
 import org.moeaframework.core.comparator.ChainedComparator;
 import org.moeaframework.core.comparator.CrowdingComparator;
 import org.moeaframework.core.comparator.ParetoDominanceComparator;
@@ -36,6 +36,7 @@ import org.moeaframework.parallel.island.migration.SingleNeighborMigration;
 import org.moeaframework.parallel.island.topology.FullyConnectedTopology;
 import org.moeaframework.parallel.island.topology.Topology;
 import org.moeaframework.problem.CEC2009.UF1;
+import org.moeaframework.problem.Problem;
 
 public class IgniteIslandModelExample {
 
@@ -50,7 +51,7 @@ public class IgniteIslandModelExample {
 
 			Migration migration = new SingleNeighborMigration(1, migrationSelection);
 			Topology topology = new FullyConnectedTopology();
-			IslandModel model = new IslandModel(1000, migration, topology);
+			IslandModel model = new IslandModel(Frequency.ofEvaluations(1000), migration, topology);
 
 			for (int i = 0; i < 8; i++) {
 				NSGAII algorithm = new NSGAII(problem);

@@ -1,4 +1,4 @@
-/* Copyright 2009-2024 David Hadka
+/* Copyright 2009-2025 David Hadka
  *
  * This file is part of the MOEA Framework.
  *
@@ -22,8 +22,8 @@ import java.util.concurrent.ExecutorService;
 import org.apache.ignite.Ignite;
 import org.apache.ignite.Ignition;
 import org.moeaframework.algorithm.NSGAII;
-import org.moeaframework.core.Problem;
-import org.moeaframework.util.distributed.DistributedProblem;
+import org.moeaframework.parallel.DistributedProblem;
+import org.moeaframework.problem.Problem;
 
 public class IgniteMasterSlaveExample {
 	

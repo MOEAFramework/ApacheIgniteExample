@@ -10,16 +10,20 @@ distribute the work across all available CPUs.
 To distribute the work across multiple machines, you must setup an Ignite config file specifying the topology and
 start one or more nodes following the guidance at https://ignite.apache.org/docs/latest/starting-nodes.  
 
-## Configuration
+## Troubleshooting
 
-Since Apache Ignite accesses Java's proprietary APIs, you might see errors like
+### Inaccessible Field
+
+This error occurs because Apache Ignite accesses internal Java APIs, which are not accessible on newer versions of
+Java.
 
 ```
 Exception in thread "main" java.lang.ExceptionInInitializerError
+...
 Caused by: java.lang.reflect.InaccessibleObjectException: Unable to make field ... accessible
 ```
 
-To fix this, you will need to add the following options when starting Java.
+To fix this, add the following options when launching the JVM:
 
 ```
 --add-opens=java.base/jdk.internal.access=ALL-UNNAMED
@@ -50,9 +54,25 @@ To fix this, you will need to add the following options when starting Java.
 
 More details can be found at https://ignite.apache.org/docs/latest/setup#running-ignite-with-java-11-or-later.
 
+### Failed to create page store work directory
+
+This error can occur when the file path is too long for the file system:
+
+```
+Exception in thread "main" class org.apache.ignite.IgniteException: Failed to start processor: GridProcessorAdapter []
+...
+Caused by: class org.apache.ignite.IgniteCheckedException: Failed to create page store work directory: <path>
+```
+
+To fix this, we can override the generated id for the node by adding this setting when launching the JVM:
+
+```
+-DIGNITE_OVERRIDE_CONSISTENT_ID=node00
+```
+
 ## License
 
-Copyright 2009-2024 David Hadka and other contributors.  All rights reserved.
+Copyright 2009-2025 David Hadka and other contributors.  All rights reserved.
 
 The MOEA Framework is free software: you can redistribute it and/or modify
 it under the terms of the GNU Lesser General Public License as published by

@@ -1,4 +1,4 @@
-/* Copyright 2009-2024 David Hadka
+/* Copyright 2009-2025 David Hadka
  *
  * This file is part of the MOEA Framework.
  *
@@ -20,7 +20,7 @@ package org.moeaframework.ignite;
 import java.io.Serializable;
 
 import org.moeaframework.core.Solution;
-import org.moeaframework.core.variable.EncodingUtils;
+import org.moeaframework.core.variable.RealVariable;
 import org.moeaframework.problem.AbstractProblem;
 
 public class MyDistributedProblem extends AbstractProblem implements Serializable {
@@ -31,7 +31,7 @@ public class MyDistributedProblem extends AbstractProblem implements Serializabl
 
 	@Override
 	public void evaluate(Solution solution) {
-		double x = EncodingUtils.getReal(solution.getVariable(0));
+		double x = RealVariable.getReal(solution.getVariable(0));
 		
 		// perform some expensive calculation
 		double sum = 0.0;
@@ -40,14 +40,14 @@ public class MyDistributedProblem extends AbstractProblem implements Serializabl
 			sum += i;
 		}
 		
-		solution.setObjective(0, Math.pow(x, 2.0));
-		solution.setObjective(1, Math.pow(x - 2.0, 2.0));
+		solution.setObjectiveValue(0, Math.pow(x, 2.0));
+		solution.setObjectiveValue(1, Math.pow(x - 2.0, 2.0));
 	}
 
 	@Override
 	public Solution newSolution() {
 		Solution solution = new Solution(1, 2);
-		solution.setVariable(0, EncodingUtils.newReal(-10.0, 10.0));
+		solution.setVariable(0, new RealVariable(-10.0, 10.0));
 		return solution;
 	}
 
